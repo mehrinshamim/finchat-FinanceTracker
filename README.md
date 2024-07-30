@@ -1,4 +1,4 @@
-# finchat
+# finchat-2
 A personalized chatbot that helps you track your finances and gives you insights weekly or monthly on how much you've spent on each category of things at, you know, normal expenses.
 
 project plan
