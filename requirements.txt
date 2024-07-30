@@ -1,0 +1,5 @@
+flask
+python-dotenv #to register environment variables that you want to be automatically used when you run the flask command.
+flask-wtf
+flask-sqlalchemy
+flask-migrate
