@@ -40,3 +40,25 @@ changed the initial databse plan adding or replacing credit/debit with income, e
    
 
   
+27.07.2024
+- got error in flask db migrate & upgrade
+OperationalError : unable to open the database file
+
+Here, when i checked, I couldnt see the Users table migrations script that i made or the app.db that should have been created when i did the upgrade command then.
+
+SO yea spent 3 days trying all kinds of things asking chatgpt blackbox stackoverflow even yt & trying various other stuff
+
+& i got the feeling that yea it might be cz the app.db & the initial script is not here 
+so maybe the earlier flask db didnt work properly so 
+I tried reinstalling flask-migrate but that also kinda failed
+
+So now 30.07.2024
+- finally fixed it by making a whole new repo folder & copy pasting code from my past commit from part4 of users & posts table 
+then changing themodels to UPTB 
+& alhamdulilla IT WORKED!!!
+
+onto the next part
+- created the github repo newly from the terminal 
+that was also a task in itself kinda cz i ve never tried it before
+but yep done 
+havto finish this too in 2 days as planned
