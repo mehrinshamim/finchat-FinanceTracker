@@ -3,3 +3,5 @@ python-dotenv #to register environment variables that you want to be automatical
 flask-wtf
 flask-sqlalchemy
 flask-migrate
+flask-login
+email-validator

@@ -2,17 +2,22 @@
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - Microblog</title>
+        <title>{{ title }} - FinChat</title>
         {% else %}
-        <title>Welcome to Microblog</title>
+        <title>Welcome to FinChat</title>
         {% endif %}
     </head>
     <body>
         <div>
-            Microblog:
+            Finchat:
             <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('login') }}">Login</a>
-        </div>
+            {% if current_user.is_anonymous %}
+                <a href="{{ url_for('login') }}">Login</a>
+
+            {% else %}
+                <a href="{{ url_for('logout') }}">LogOut</a>
+            {% endif %}
+            </div>
         <hr>
         {% with messages = get_flashed_messages() %}
         {% if messages %}

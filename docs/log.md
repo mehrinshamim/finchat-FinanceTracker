@@ -62,3 +62,28 @@ onto the next part
 that was also a task in itself kinda cz i ve never tried it before
 but yep done 
 havto finish this too in 2 days as planned
+
+----------
+part 5 from tutorial
+- set password werkzeug.security & its 2 fns in models.py
+- imported LoginManager from flask_login 
+
+userMixin 4
+user loader fn
+current_user, login_user, logout_user
+login fn
+logout fn
+- login/logout if fn in base.html
+
+- requiring users to login
+login_required next query string
+3rd case urlsplit() netloc
+
+01.08.2024
+- fixed error in the redirecting from signin login to index (was a bug cz of a ')
+- just realizd there was no validation error problem in my code
+i just forgot for a momnet what validation was AAGHH
+validation means if the data input doesnt match thetype of datatype & properties weve filled out in models
+so yep invalid password etc was supposed to vbe flash msg itself haha
+validationerror comes for eg if we do not fill in a required field
+
