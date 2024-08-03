@@ -29,7 +29,7 @@ A personalized chatbot that helps you track your finances and gives you insights
 *I'm currently still working on this project (version 1.0 web version) to enhance its features and improve its usability. Stay tuned for updates!*
 
 ## Setup Instructions:
-1. Clone the repository: `git clone https://github.com/mehrinshamim/flood-prediction-project.git`
+1. Clone the repository: `git clone https://github.com/mehrinshamim/finchat-FinanceTracker.git`
 2. Create a virtual environment in the project directory: `python -m venv venv`
 3. Activate the virtual environment: `venv/Scripts/activate`
 4. Install the requirements: `pip install -r requirements.txt`
