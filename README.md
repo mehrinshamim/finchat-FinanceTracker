@@ -18,7 +18,7 @@
 
 - **Backend:** Flask, SQLAlchemy
 - **Frontend:** HTML, CSS
-- **Database:** SQLite (can be easily swapped with PostgreSQL or MySQL)
+- **Database:** SQLite 
 - **Authentication:** Flask-Login
 - **Forms:** Flask-WTF
 
@@ -26,7 +26,7 @@
 A personalized chatbot that helps you track your finances and gives you insights weekly or monthly on how much you've spent on each category of things at, you know, normal expenses.
 
 ## Current Status:
-*I'm currently still working on this project (version 1.0) to enhance its features and improve its usability. Stay tuned for updates!*
+*I'm currently still working on this project (version 1.0 web version) to enhance its features and improve its usability. Stay tuned for updates!*
 
 ## Setup Instructions:
 
