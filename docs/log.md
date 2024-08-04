@@ -87,3 +87,5 @@ validation means if the data input doesnt match thetype of datatype & properties
 so yep invalid password etc was supposed to vbe flash msg itself haha
 validationerror comes for eg if we do not fill in a required field
 
+------------
+routes & part 6

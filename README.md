@@ -1,5 +1,3 @@
-# finchat-2
-A personalized chatbot that helps you track your finances and gives you insights weekly or monthly on how much you've spent on each category of things at, you know, normal expenses.
 
 project plan
 - https://docs.google.com/spreadsheets/d/1z5x4M2Gshg7txIAfKiwAxm6hxG_zkoS3a9ULQGOF258/edit?gid=0#gid=0
@@ -14,3 +12,12 @@ project management links
 
 
 
+## Instructions on How to Run
+
+- Create a virtual environment: python -m venv .venv
+- Activate the virtual environment: venv/Scripts/activate
+- Install Flask: pip install flask
+- Install the Requirements: pip install -r requirements.txt
+- Make database migrations: flask db init
+- Apply migrations to the database: flask db upgrade
+- And finally, run the application: flask run
