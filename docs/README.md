@@ -1,4 +1,3 @@
-
 # Finance Tracker Web Application
 
 **FinChat** is a web-based personal finance tracker built using Flask. It helps users manage their income, expenses, and budget efficiently. With a user-friendly interface and secure authentication system, FinChat allows users to add, view, and categorize their financial transactions. The application also supports features like updating user information, generating budget reports, and managing financial categories.
@@ -30,15 +29,24 @@ A personalized chatbot that helps you track your finances and gives you insights
 *I'm currently still working on this project (version 1.0 web version) to enhance its features and improve its usability. Stay tuned for updates!*
 
 ## Setup Instructions:
-1. Clone the repository: `git clone https://github.com/mehrinshamim/finchat-FinanceTracker.git`
-2. Create a virtual environment in the project directory: `python -m venv venv`
-3. Activate the virtual environment: `venv/Scripts/activate`
-4. Install the requirements: `pip install -r requirements.txt`
-5. Initialize the migration repository: `flask db init` (only needed once)
-6. Generate an initial migration: `flask db migrate -m "Initial migration."` (only needed once)
-7. Apply the migration to the database: `flask db upgrade`
-8. And finally, run the application: `flask run`
-9. Access the application via the provided local server link.
+
+1. Clone the repository.
+2. Install the required dependencies.
+3. Configure the database.
+4. Run the Flask application.
+5. Access the application via the provided local server link.
 
 
->>>>>>> 29e5a74d2062799f898e1a4016ab19ad0622ad3e
+project plan
+- https://docs.google.com/spreadsheets/d/1z5x4M2Gshg7txIAfKiwAxm6hxG_zkoS3a9ULQGOF258/edit?gid=0#gid=0
+
+
+project management links
+- https://blog.miguelgrinberg.com/post/simple-project-management-or-how-to-finish-your-project-before-the-world-comes-to-an-end
+- https://docs.google.com/spreadsheets/d/1SXmj1yH2bPh7930s1mGqzwcvIXhTaH9E4lIZnX80cGM/edit?gid=1#gid=1 his excel worksheet
+
+- yt obsidian canvas linking you thinking https://www.youtube.com/watch?v=vLBd_ADeKIw
+
+
+
+
