@@ -17,7 +17,8 @@
             {% else %}
                 <a href="{{ url_for('logout') }}">LogOut</a>
             {% endif %}
-            </div>
+            <a href="{{ url_for('testing') }}">Test Endpoints</a>    
+        </div>
         <hr>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -29,5 +30,9 @@
         {% endif %}
         {% endwith %}
         {% block content %}{% endblock %}
+
+        {% block scripts %}  {% endblock %}  <!--optional dk if we'll need it -->
+
+        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
     </body>
 </html>

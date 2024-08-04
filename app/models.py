@@ -4,8 +4,14 @@ from datetime import datetime , timezone, date
 from typing import Optional
 import sqlalchemy as sa
 import sqlalchemy.orm as so
+#from sqlalchemy import Enum
 from app import db
 from app import login
+
+#class TransactionType(Enum):
+#   income = 'income'
+#   expense = 'expense'
+#   loan = 'loan'
 
 class User(UserMixin, db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
@@ -37,8 +43,17 @@ def load_user(id):
 
 class Category(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
-    name: so.Mapped[str] = so.mapped_column( sa.String(50), index=True, unique=True)
+    name: so.Mapped[str] = so.mapped_column( sa.String(50), index=True, unique=False)
     user_id: so.Mapped[int] = so.mapped_column( sa.ForeignKey(User.id), index=True)
+    transaction_type: so.Mapped[str] = so.mapped_column(
+        sa.String(50),
+        index=True,
+        unique=False,
+        server_default='select'  # set default value to 'income'
+    )
+    deleted: so.Mapped[bool] = so.mapped_column(default=False,unique=False)  # Add a deleted column
+
+
     
     creator: so.Mapped[User] = so.relationship(back_populates='categories')
     transactions: so.WriteOnlyMapped['Transaction'] = so.relationship(back_populates='section')
@@ -55,7 +70,7 @@ class Transaction(db.Model):
     category_id: so.Mapped[int] = so.mapped_column( sa.ForeignKey(Category.id),index=True)
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id), index=True)
     date : so.Mapped[datetime.date] = so.mapped_column( sa.Date, index=True, default= date.today)    #blackbox helped
-    loan_type: so.Mapped[str] = so.mapped_column(sa.String(30), index=True, unique=False) #should be lent/received
+    loan_type: so.Mapped[str] = so.mapped_column(sa.String(30), index=True, unique=False, nullable=True) #should be lent/received
     #related_transaction_id: 
 
     creator: so.Mapped[User] = so.relationship(back_populates='transactions')

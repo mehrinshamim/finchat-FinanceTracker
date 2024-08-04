@@ -1,3 +1,4 @@
+
 # Finance Tracker Web Application
 
 **FinChat** is a web-based personal finance tracker built using Flask. It helps users manage their income, expenses, and budget efficiently. With a user-friendly interface and secure authentication system, FinChat allows users to add, view, and categorize their financial transactions. The application also supports features like updating user information, generating budget reports, and managing financial categories.
@@ -40,3 +41,4 @@ A personalized chatbot that helps you track your finances and gives you insights
 9. Access the application via the provided local server link.
 
 
+>>>>>>> 29e5a74d2062799f898e1a4016ab19ad0622ad3e
