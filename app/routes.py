@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from urllib.parse import urlsplit
 from app import app
-from app.forms import LoginForm, RegistrationForm, ExpenseForm, IncomeForm, CategoryForm, RenameCategoryForm, DeleteCategoryForm
+from app.forms import LoginForm, RegistrationForm, ExpenseForm, IncomeForm, CategoryForm, RenameCategoryForm, DeleteCategoryForm, LentMoneyForm, UpdateTransactionForm, DeleteTransactionForm, UpdatePasswordForm
 
 from flask_login import current_user, login_user, logout_user, login_required
 import sqlalchemy as sa
@@ -87,9 +87,16 @@ def update_user_info():
 @app.route('/update-password', methods=['GET', 'POST'])
 @login_required
 def update_password():
-    # Implement the logic to update user password
-    pass
-
+    form = UpdatePasswordForm()
+    if form.validate_on_submit():
+        if current_user.check_password(form.current_password.data):
+            current_user.set_password(form.new_password.data)
+            db.session.commit()
+            flash('Password updated successfully.')
+            return redirect(url_for('index'))
+        else:
+            flash('Invalid current password.')
+    return render_template('update_password.html', title='Update Password', form=form)
 @app.route('/delete-user', methods=['POST'])
 @login_required
 def delete_user():
@@ -139,25 +146,90 @@ def add_income():
         return redirect(url_for('view_incomes'))
     return render_template('add_income.html', title='Add Income', form=form, Category=Category)
 
+##########      LOAN
 
 @app.route('/add-lent-money', methods=['GET', 'POST'])
 @login_required
 def add_lent_money():
-    # Implement the logic to add lent money
-    pass
+    form = LentMoneyForm()  
+    if form.validate_on_submit():
+        category = Category.query.filter_by(name='Loan', user_id=current_user.id).first()
+        if category:
+            if category.deleted:
+                category.deleted = False
+                db.session.commit()
+        else:
+            category = Category(name='Loan', user_id=current_user.id, transaction_type='loan')
+            db.session.add(category)
+            db.session.commit()
 
-@app.route('/get-back-money', methods=['GET', 'POST'])
+        transaction = Transaction(amount=form.amount.data, transaction_type='loan', description=form.description.data, category_id=category.id, user_id=current_user.id, loan_type='lent')
+        db.session.add(transaction)
+        db.session.commit()
+        flash('Lent money added successfully.')
+        return redirect(url_for('view_lent_money'))
+    return render_template('add_lent_money.html', title='Add Lent Money', form=form)
+
+
+@app.route('/view-lent-money')
 @login_required
-def get_back_money():
-    # Implement the logic to get back money lent
-    pass
+def view_lent_money():
+    lent_transactions = db.session.scalars(sa.select(Transaction).where(Transaction.user_id == current_user.id, Transaction.loan_type == 'lent'))
+    return render_template('view_lent_money.html', lent_transactions=lent_transactions)
 
-
+@app.route('/reimburse/<int:transaction_id>', methods=['POST'])
+@login_required
+def reimburse(transaction_id):
+    transaction = db.session.scalar(sa.select(Transaction).where(Transaction.id == transaction_id, Transaction.user_id == current_user.id))
+    if transaction and transaction.loan_type == 'lent':
+        transaction.loan_type = 'reimbursed'
+        db.session.commit()
+        flash('Loan marked as reimbursed.')
+    else:
+        flash('Transaction not found or not a lent transaction.')
+    return redirect(url_for('view_lent_money'))
+############################
+'''
 @app.route('/view-transactions')
 @login_required
 def view_transactions():
     transactions = db.session.scalars(sa.select(Transaction).where(Transaction.user_id == current_user.id))
     return render_template('view_transactions.html', transactions=transactions)
+'''
+@app.route('/view-transactions', methods=['GET', 'POST'])
+@login_required
+def view_transactions():
+    update_form = UpdateTransactionForm()
+    delete_form = DeleteTransactionForm()
+    transactions = db.session.scalars(sa.select(Transaction).where(Transaction.user_id == current_user.id))
+    
+    if update_form.validate_on_submit():
+        transaction = Transaction.query.filter_by(id=update_form.transaction_id.data, user_id=current_user.id).first()
+        if transaction:
+            transaction.amount = update_form.amount.data
+            transaction.description = update_form.description.data
+            db.session.commit()
+            flash('Transaction updated successfully.')
+            return redirect(url_for('view_transactions'))
+        else:
+            flash('Transaction not found.')
+    
+    if delete_form.validate_on_submit():
+        transaction = Transaction.query.filter_by(id=delete_form.transaction_id.data, user_id=current_user.id).first()
+        if transaction:
+            db.session.delete(transaction)
+            db.session.commit()
+            flash('Transaction deleted successfully.')
+            return redirect(url_for('view_transactions'))
+        else:
+            flash('Transaction not found.')
+    
+    return render_template('view_transactions.html', title='View Transactions', 
+                           transactions=transactions, 
+                           update_form=update_form, 
+                           delete_form=delete_form)
+
+
 @app.route('/view-expenses')
 @login_required
 def view_expenses():
@@ -244,14 +316,14 @@ def add_expense_category():
         flash('Expense category added successfully.')
         return redirect(url_for('view_categories'))
     return render_template('add_expense_category.html', title='Add Expense Category', form=form)
+
 @app.route('/view-categories', methods=['GET', 'POST'])
 @login_required
 def view_categories():
     add_category_form = CategoryForm()
     rename_category_form = RenameCategoryForm()
     delete_category_form = DeleteCategoryForm()
-    categories = Category.query.filter_by(user_id=current_user.id, deleted=False).all()
-
+    categories = Category.query.filter_by(user_id=current_user.id, deleted=False).filter(Category.transaction_type != 'loan').all()
     if rename_category_form.validate_on_submit():
         category = Category.query.filter_by(id=rename_category_form.category_id.data, user_id=current_user.id).first()
         if category:

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, PasswordField, BooleanField, SubmitField, DecimalField, TextAreaField, SelectField
+from wtforms import StringField, IntegerField, PasswordField, BooleanField, SubmitField, DecimalField, TextAreaField, SelectField, HiddenField, FloatField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, NumberRange
 import sqlalchemy as sa
 from app import db
@@ -67,3 +67,24 @@ class RenameCategoryForm(FlaskForm):
 class DeleteCategoryForm(FlaskForm):
     category_id = IntegerField('Category ID', validators=[DataRequired()])
     submit = SubmitField('Delete Category')
+
+class LentMoneyForm(FlaskForm):
+    amount = DecimalField('Amount', validators=[DataRequired(), NumberRange(min=0)])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    submit = SubmitField('Add Expense')
+
+class UpdateTransactionForm(FlaskForm):
+    transaction_id = HiddenField('Transaction ID')
+    amount = FloatField('Amount', validators=[DataRequired()])
+    description = StringField('Description', validators=[DataRequired()])
+    submit = SubmitField('Update')
+
+class DeleteTransactionForm(FlaskForm):
+    transaction_id = HiddenField('Transaction ID')
+    submit = SubmitField('Delete')
+
+class UpdatePasswordForm(FlaskForm):
+    current_password = PasswordField('Enter Current Password', validators=[DataRequired()])
+    new_password = PasswordField('Enter New Password', validators=[DataRequired()])
+    confirm_new_password = PasswordField('Confirm New Password', validators=[DataRequired(), EqualTo('new_password')])
+    submit = SubmitField('Update Password')

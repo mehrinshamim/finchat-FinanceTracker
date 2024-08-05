@@ -41,4 +41,3 @@ A personalized chatbot that helps you track your finances and gives you insights
 9. Access the application via the provided local server link.
 
 
->>>>>>> 29e5a74d2062799f898e1a4016ab19ad0622ad3e

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>View Lent Money</h1>
+    {% if lent_transactions %}
+        <table>
+            <tr>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+            {% for transaction in lent_transactions %}
+                <tr>
+                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.description }}</td>
+                    <td>{{ transaction.date }}</td>
+                    <td>
+                        {% if transaction.loan_type == 'lent' %}
+                            <form action="{{ url_for('reimburse', transaction_id=transaction.id) }}" method="post">
+                                <button type="submit">Reimbursed</button>
+                            </form>
+                        {% else %}
+                            Reimbursed
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No lent money transactions found.</p>
+    {% endif %}
+{% endblock %}

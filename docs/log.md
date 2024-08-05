@@ -89,3 +89,14 @@ validationerror comes for eg if we do not fill in a required field
 
 ------------
 routes & part 6
+
+
+
+
+
+more hapnd 
+but now 
+"Added email functionality & logging for error handling, and loan & update password features done,update & delete entries check; updated forms, routes, and templates; and modified configuration and requirements.(for email server)"
+
+- needto add/check for a google mail server 
+that has authentication & can pass security features
