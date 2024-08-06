@@ -35,9 +35,9 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class ExpenseForm(FlaskForm):
-    amount = DecimalField('Amount', validators=[DataRequired(), NumberRange(min=0)])
     category = SelectField('Category', validators=[DataRequired()], coerce=int)
     description = TextAreaField('Description', validators=[DataRequired()])
+    amount = DecimalField('Amount', validators=[DataRequired(), NumberRange(min=0)])
     submit = SubmitField('Add Expense')
 
     def __init__(self, *args, **kwargs):
@@ -45,9 +45,9 @@ class ExpenseForm(FlaskForm):
         self.category.choices = [(c.id, c.name) for c in db.session.scalars(sa.select(Category))]
 
 class IncomeForm(FlaskForm):
-    amount = DecimalField('Amount', validators=[DataRequired(), NumberRange(min=0)])
     category = SelectField('Category', validators=[DataRequired()], coerce=int)
     description = TextAreaField('Description', validators=[DataRequired()])
+    amount = DecimalField('Amount', validators=[DataRequired(), NumberRange(min=0)])
     submit = SubmitField('Add Income')
 
     def __init__(self, *args, **kwargs):
@@ -69,10 +69,11 @@ class DeleteCategoryForm(FlaskForm):
     submit = SubmitField('Delete Category')
 
 class LentMoneyForm(FlaskForm):
-    amount = DecimalField('Amount', validators=[DataRequired(), NumberRange(min=0)])
     description = TextAreaField('Description', validators=[DataRequired()])
+    amount = DecimalField('Amount', validators=[DataRequired(), NumberRange(min=0)])
     submit = SubmitField('Add Expense')
 
+#check semantics here
 class UpdateTransactionForm(FlaskForm):
     transaction_id = HiddenField('Transaction ID')
     amount = FloatField('Amount', validators=[DataRequired()])
