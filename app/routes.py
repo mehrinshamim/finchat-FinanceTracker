@@ -97,6 +97,8 @@ def update_password():
         else:
             flash('Invalid current password.')
     return render_template('update_password.html', title='Update Password', form=form)
+
+
 @app.route('/delete-user', methods=['POST'])
 @login_required
 def delete_user():

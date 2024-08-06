@@ -99,4 +99,19 @@ but now
 "Added email functionality & logging for error handling, and loan & update password features done,update & delete entries check; updated forms, routes, and templates; and modified configuration and requirements.(for email server)"
 
 - needto add/check for a google mail server 
-that has authentication & can pass security features
+that has authentication & can pass security 
+
+- needto make a dropdown for categories
+
+05082024
+- delete trn working
+- update button NOT working 
+  no response form isnt showing 
+  
+
+06082024
+- added bootstap for navbar
+- havto add bootsrap for forms too
+- and other stuff too
+- check/learn how to add it for dropdown forms etc 
+- make the layout buttons in index/home page for all function/links
