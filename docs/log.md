@@ -115,3 +115,10 @@ that has authentication & can pass security
 - and other stuff too
 - check/learn how to add it for dropdown forms etc 
 - make the layout buttons in index/home page for all function/links
+
+
+DEPLOYED!!!!! 
+deployed using wsgi & gunicorn concepts on render.com
+
+- "Updated forms and routes to filter categories by user ID and deleted status"
+ fixed that bug 

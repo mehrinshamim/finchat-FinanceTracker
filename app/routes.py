@@ -113,7 +113,7 @@ def add_expense():
     form = ExpenseForm()
     if form.validate_on_submit():
         # Check if category exists, if not create a new one
-        category = Category.query.filter_by(name=form.category.data, user_id=current_user.id).first()
+        category = Category.query.filter_by(name=form.category.data, user_id=current_user.id, deleted=False).first()
         if not category:
             category = Category(name=form.category.data, user_id=current_user.id)
             db.session.add(category)
@@ -134,7 +134,7 @@ def add_income():
     form = IncomeForm()
     if form.validate_on_submit():
         # Check if category exists, if not create a new one
-        category = Category.query.filter_by(name=form.category.data, user_id=current_user.id).first()
+        category = Category.query.filter_by(name=form.category.data, user_id=current_user.id, deleted=False).first()
         if not category:
             category = Category(name=form.category.data, user_id=current_user.id)
             db.session.add(category)

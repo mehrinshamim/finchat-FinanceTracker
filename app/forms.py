@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from wtforms import StringField, IntegerField, PasswordField, BooleanField, SubmitField, DecimalField, TextAreaField, SelectField, HiddenField, FloatField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, NumberRange
 import sqlalchemy as sa
@@ -42,8 +43,7 @@ class ExpenseForm(FlaskForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.category.choices = [(c.id, c.name) for c in db.session.scalars(sa.select(Category))]
-
+        self.category.choices = [(c.id, c.name) for c in db.session.scalars(sa.select(Category).where(Category.user_id == current_user.id, Category.transaction_type == 'expense', Category.deleted == False))]
 class IncomeForm(FlaskForm):
     category = SelectField('Category', validators=[DataRequired()], coerce=int)
     description = TextAreaField('Description', validators=[DataRequired()])
@@ -52,7 +52,7 @@ class IncomeForm(FlaskForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.category.choices = [(c.id, c.name) for c in db.session.scalars(sa.select(Category))]
+        self.category.choices = [(c.id, c.name) for c in db.session.scalars(sa.select(Category).where(Category.user_id == current_user.id, Category.transaction_type == 'income', Category.deleted == False))]
 
 #CATEGORY
 class CategoryForm(FlaskForm):
