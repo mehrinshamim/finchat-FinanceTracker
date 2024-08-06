@@ -8,3 +8,5 @@ email-validator
 flask-mail
 pyjwt  #to generate secure tokens (for reset_password feature)
 aiosmtpd  # to test email feature
+
+gunicorn
