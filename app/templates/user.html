@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>User: {{ user.username }}</h1>
+    <hr>
+    <h2>Recent Transactions</h2>
+    <ul>
+        {% for transaction in recent_transactions %}
+            <li>
+                {{ transaction.date }} - {{ transaction.category }} - {{ transaction.description }} - {{ transaction.amount }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+
+<!--category needs to be called form its model where category.id == ___etc-->

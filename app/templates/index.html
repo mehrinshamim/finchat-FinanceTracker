@@ -3,5 +3,22 @@
 {% block content %}
 <h1>Home Page</h1>
 <p>Welcome, {{ current_user.username }}!</p>
+<div>
+  <a class="btn btn-outline-primary" href="{{ url_for('add_expense') }}" role="button">Add Expense</a>
+  <a class="btn btn-outline-primary" href="{{ url_for('add_income') }}" role="button">Add Income</a>
+  <a class="btn btn-outline-primary" href="{{ url_for('add_lent_money') }}" role="button">Add Lent Money</a>
+</div>
+<div>
+  <a class="btn btn-outline-primary" href="{{ url_for('view_expenses') }}" role="button">View Expenses</a>
+  <a class="btn btn-outline-primary" href="{{ url_for('view_incomes') }}" role="button">View Income</a>
+  <a class="btn btn-outline-primary" href="{{ url_for('view_lent_money') }}" role="button">View Lent Money</a>
+  <a class="btn btn-outline-primary" href="{{ url_for('view_transactions') }}" role="button">View Transactions</a>
+</div>
 
+<div>
+    <!-- Category Links -->
+    <a class="btn btn-outline-primary" href="{{ url_for('add_income_category') }}" role="button">Add Income Category</a>
+    <a class="btn btn-outline-primary" href="{{ url_for('add_expense_category') }}" role="button">Add Expense Category</a>
+    <a class="btn btn-outline-primary" href="{{ url_for('view_categories') }}" role="button">View Categories</a>
+</div>
 {% endblock %}

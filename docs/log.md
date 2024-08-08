@@ -121,4 +121,11 @@ DEPLOYED!!!!!
 deployed using wsgi & gunicorn concepts on render.com
 
 - "Updated forms and routes to filter categories by user ID and deleted status"
- fixed that bug 
+ fixed that bug
+ 
+- add buttons & sidebar in index pg (USE Bootstrap)
+https://getbootstrap.com/docs/5.3/components/buttons/#button-tags
+
+
+- learn to center the buttons 
+& make some space between them

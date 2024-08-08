@@ -64,13 +64,22 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-@app.route('/<username>')
+@app.route('/user/<username>')
+@login_required
 def user(username):
-    user = db.session.scalar(sa.select(User).where(User.username == username))
-    if user is None:
-        flash('User not found.')
+    user = db.first_or_404(sa.select(User).where(User.username == username))
+    if current_user.username != username:
+        flash('You do not have permission to view this user\'s page.')
         return redirect(url_for('index'))
-    return render_template('user.html', user=user)
+    
+    recent_transactions = db.session.scalars(
+        sa.select(Transaction)
+        .where(Transaction.user_id == user.id)
+        .order_by(Transaction.date.desc())
+        .limit(10)
+    )
+    
+    return render_template('user.html', user=user, recent_transactions=recent_transactions)
 
 @app.route('/update-user-info', methods=['GET', 'POST'])
 @login_required
