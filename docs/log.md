@@ -129,3 +129,8 @@ https://getbootstrap.com/docs/5.3/components/buttons/#button-tags
 
 - learn to center the buttons 
 & make some space between them
+
+- make semantic to 
+tell em to add category or choose some basic categories you want
+
+OR create some basic categories for them when you register a user--- ie a universal categories(5), make test.id for that?

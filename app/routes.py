@@ -59,6 +59,26 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
+    
+        # Add expense categories
+        expense_categories = [
+            Category(name='Food', user_id=user.id, transaction_type='expense'),
+            Category(name='Entertainment', user_id=user.id, transaction_type='expense'),
+            Category(name='Transportation', user_id=user.id, transaction_type='expense'),
+            Category(name='Textbooks and Supplies', user_id=user.id, transaction_type='expense'),
+            Category(name='Personal Care', user_id=user.id, transaction_type='expense')
+        ]
+        db.session.add_all(expense_categories)
+
+        # Add income categories
+        income_categories = [
+            Category(name='Scholarship/Financial Aid', user_id=user.id, transaction_type='income'),
+            Category(name='Part-time Job', user_id=user.id, transaction_type='income'),
+            Category(name='Allowance/Parental Support', user_id=user.id, transaction_type='income')
+        ]
+        db.session.add_all(income_categories)
+        db.session.commit()
+
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
