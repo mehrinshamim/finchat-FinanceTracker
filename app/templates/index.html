@@ -1,24 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Home Page</h1>
-<p>Welcome, {{ current_user.username }}!</p>
-<div>
-  <a class="btn btn-outline-primary" href="{{ url_for('add_expense') }}" role="button">Add Expense</a>
-  <a class="btn btn-outline-primary" href="{{ url_for('add_income') }}" role="button">Add Income</a>
-  <a class="btn btn-outline-primary" href="{{ url_for('add_lent_money') }}" role="button">Add Lent Money</a>
-</div>
-<div>
-  <a class="btn btn-outline-primary" href="{{ url_for('view_expenses') }}" role="button">View Expenses</a>
-  <a class="btn btn-outline-primary" href="{{ url_for('view_incomes') }}" role="button">View Income</a>
-  <a class="btn btn-outline-primary" href="{{ url_for('view_lent_money') }}" role="button">View Lent Money</a>
-  <a class="btn btn-outline-primary" href="{{ url_for('view_transactions') }}" role="button">View Transactions</a>
-</div>
+  <h1>Home Page</h1>
+  <p>Welcome, {{ current_user.username }}!</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Get Started</h2>
+        <p>New to our app? Here's a step-by-step guide to help you get started:</p>
+        <ol>
+          <li><a href="{{ url_for('add_income') }}">Add your income</a> to start tracking your finances.</li>
+          <li><a href="{{ url_for('add_expense') }}">Add your expenses</a> to see where your money is going.</li>
+          <li><a href="{{ url_for('add_lent_money') }}">Add any lent money</a> to keep track of your debts.</li>
+        </ol>
+      </div>
+      <div class="col-md-6">
+        <h2>Explore Our Features</h2>
+        <p>Take a tour of our features:</p>
+        <ul>
+          <li><a href="{{ url_for('view_expenses') }}">View all your expenses</a> in one place.</li>
+          <li><a href="{{ url_for('view_incomes') }}">View all your income</a> sources.</li>
+          <li><a href="{{ url_for('view_lent_money') }}">View all your lent money</a> records.</li>
+          <li><a href="{{ url_for('view_transactions') }}">View all your transactions</a> in a single view.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-<div>
-    <!-- Category Links -->
-    <a class="btn btn-outline-primary" href="{{ url_for('add_income_category') }}" role="button">Add Income Category</a>
-    <a class="btn btn-outline-primary" href="{{ url_for('add_expense_category') }}" role="button">Add Expense Category</a>
-    <a class="btn btn-outline-primary" href="{{ url_for('view_categories') }}" role="button">View Categories</a>
-</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Category Management</h2>
+        <p>Manage your categories to better organize your finances:</p>
+        <ul>
+          <li><a href="{{ url_for('add_income_category') }}">Add a new income category</a>.</li>
+          <li><a href="{{ url_for('add_expense_category') }}">Add a new expense category</a>.</li>
+          <li><a href="{{ url_for('view_categories') }}">View all your categories</a>.</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h2>Need Help?</h2>
+        <p>If you have any questions or need assistance, feel free to <a href="#">contact us</a>.</p>
+      </div>
+    </div>
+  </div>
 {% endblock %}
